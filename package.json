@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/GSterczewski/fm-huddle-landing.git"
   },
   "keywords": [
     "hurdle",
