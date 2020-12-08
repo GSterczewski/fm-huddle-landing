@@ -216,7 +216,7 @@ body {
   padding: 0.4em;
   border-radius: 50%;
   fill: $color-text;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-out;
   &:nth-of-type(1) {
     margin: 0 5px;
   }
