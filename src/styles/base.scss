@@ -1,0 +1,234 @@
+$font-family: "Open Sans", sans-serif;
+$font-bold: 600;
+$color-primary: hsl(257, 40%, 49%);
+$color-secondary: hsl(300, 69%, 71%);
+$color-text: #fff;
+
+$images-path: "assets/images";
+
+$breakpoint: 1200px;
+
+$max-font: 20px;
+$min-font: 16px;
+$max-width: 1200px;
+
+$in-section-gap: 2rem;
+$section-padding: 2.5rem;
+$section-gap: $in-section-gap * 1.3;
+
+@mixin section-gap($base) {
+  margin-bottom: $base;
+  @media (max-width: $breakpoint) and (min-height: 1200px) {
+    margin-bottom: $base * 2;
+  }
+  @media (min-width: $breakpoint) {
+    margin-bottom: 0;
+  }
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function no-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+@mixin fluid-font($min-font, $max-font, $max-width) {
+  $min-vw-calc: no-unit($min-font * $max-width) / no-unit($max-font) + "px";
+
+  @media screen and (max-width: $max-width) and (min-width: $min-vw-calc) {
+    font-size: calc(#{no-unit($max-font / $max-width)} * 100vw);
+  }
+
+  @media screen and (min-width: $max-width) {
+    font-size: $max-font;
+  }
+}
+
+@mixin background-image($img) {
+  background-image: url(#{$images-path}/#{$img});
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1,
+p {
+  max-width: 600px;
+  text-align: center;
+}
+h1 {
+  font-size: 1.6em;
+  font-weight: $font-bold;
+}
+
+body {
+  @include background-image("bg-mobile.svg");
+  font-family: $font-family;
+  position: relative;
+  background-color: $color-primary;
+  color: $color-text;
+
+  @media (min-width: $breakpoint) {
+    @include background-image("bg-desktop.svg");
+  }
+}
+
+.wrapper {
+  @include fluid-font($min-font, $max-font, $max-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  @media (min-width: $breakpoint) {
+  }
+}
+
+.header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  padding: $in-section-gap $section-padding;
+
+  @include section-gap($section-gap);
+
+  @media (min-width: $breakpoint) {
+    height: 15vh;
+  }
+}
+.hero {
+  width: 100%;
+  padding: 0 $section-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include section-gap($section-gap);
+
+  &-img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @include section-gap($section-gap);
+  }
+
+  &-img {
+    width: 100%;
+
+    max-width: 600px;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  &-text {
+    margin: $section-gap 0;
+  }
+  &-button {
+    font-size: 0.9em;
+    padding: 1.1rem 5rem;
+    border: none;
+    border-radius: 2rem;
+    color: $color-primary;
+    font-weight: $font-bold;
+    background-color: $color-text;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-out;
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+      background-color: $color-secondary;
+      color: $color-text;
+    }
+  }
+
+  @media (min-width: $breakpoint) {
+    flex-direction: row;
+    align-items: center;
+    height: 70vh;
+
+    &-img-container {
+      margin: 0;
+      width: 60%;
+      justify-content: flex-start;
+    }
+    &-img {
+      width: 100%;
+      height: auto;
+      max-width: 760px;
+    }
+    &-content {
+      align-items: flex-start;
+
+      flex-grow: 1;
+      padding: 0 $section-padding;
+    }
+    &-text {
+      text-align: start;
+      font-size: 0.8em;
+    }
+    &-heading {
+      text-align: start;
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+
+  @media (min-width: $breakpoint) {
+    height: 15vh;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-right: $section-padding * 2;
+  }
+}
+
+.social-link {
+  &:hover,
+  &:focus {
+    .social-icon {
+      transform: scale(1.4);
+      background-color: $color-secondary;
+      color: $color-text;
+      border-color: transparent;
+    }
+  }
+}
+.social-icon {
+  box-sizing: content-box;
+  width: 1.5em;
+  border: 1px solid $color-text;
+  padding: 0.4em;
+  border-radius: 50%;
+  fill: $color-text;
+  transition: all 0.25s ease-in-out;
+  &:nth-of-type(1) {
+    margin: 0 5px;
+  }
+}
+.list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 8em;
+}
