@@ -67,27 +67,23 @@ h1 {
 }
 
 body {
-  @include background-image("bg-mobile.svg");
   font-family: $font-family;
-  position: relative;
   background-color: $color-primary;
-  color: $color-text;
-
-  @media (min-width: $breakpoint) {
-    @include background-image("bg-desktop.svg");
-    overflow: hidden;
-  }
 }
-
 .wrapper {
+  color: $color-text;
   @include fluid-font($min-font, $max-font, $max-width);
+  @include background-image("bg-mobile.svg");
   min-height: 100vh;
+  width: 100%;
+  max-width: 2000px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-
+  margin: 0 auto;
   @media (min-width: $breakpoint) {
+    @include background-image("bg-desktop.svg");
+    overflow: hidden;
   }
 }
 
